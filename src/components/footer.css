@@ -1,0 +1,92 @@
+.alinharfooter{
+    display: flex;
+    justify-content: space-between;
+    width: 718px;
+    height: 21px;
+
+}
+
+
+.box-trainee{
+
+    display: flex;
+    width: 222px;
+    height: 21px;
+    margin-left: 160px;
+    margin-top: 14px;
+
+}
+
+#text-box-trainee{
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    white-space: nowrap;
+    
+
+}
+
+#text-box-trainee strong {
+    margin-left: 5px; 
+}
+  
+
+.box-feito-com-amor{
+
+    display: flex;
+    width: 194px;
+    height: 21px;
+    margin-left: 545px;
+    margin-top: 14px;
+
+
+}
+
+#text-feito-com-amor{
+    
+    display: flex;
+    width: 69px;
+    height: 21px;
+    left: 927px;
+    top: 684px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    white-space: nowrap;
+
+}
+
+#text-feito-com-amor strong {
+    margin-left: 5px; 
+}
+
+.favorite{
+
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.017em;
+    color: #FFAFAF;
+
+}

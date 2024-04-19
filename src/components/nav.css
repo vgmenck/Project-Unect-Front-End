@@ -1,0 +1,75 @@
+.organization-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 17px;
+    margin-left: 160px;
+    width: 960px;
+    height: 45px;
+}
+
+.img-logo{
+
+    display: flex;
+    width: 23.28px;
+    height: 40px;
+    margin-top: 3px;
+
+}
+
+.titleNav{
+    
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 45px;
+    text-align: center;
+    color:#FAFAFA;
+
+}
+
+.btn-light-mode{
+
+    display: flex;
+    border: none;
+    margin-top: 11px;
+    width: 50px;
+    height: 24px;
+    background: linear-gradient(90deg, #FFC93F 0%, #FFC93F 0.01%, #FFE03F 100%);
+    border-radius: 50px;
+    cursor: pointer;
+
+}
+
+#circlue-ligth{
+
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    margin-left: 2px;
+    background: #FFFFFF;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.icon-light{
+
+    width: 16px;
+    height: 16px;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.017em;
+    color: #FBB910;
+}
+
+
+
+
