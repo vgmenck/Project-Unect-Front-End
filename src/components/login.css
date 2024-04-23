@@ -52,9 +52,22 @@
 
 .campo-forms{
 
+    position: relative;
     width: 374px;
     height: 68px;
-    margin-top: 32px;
+
+}
+
+.icon-senha{
+
+    position: absolute;
+    transform: translateY(-50%);
+    color:  #395B8A;
+    width: 24px;
+    height: 24px;
+    left: 334px;
+    top: 75%;
+    
 
 }
 
@@ -62,6 +75,8 @@
 
     width: 53px;
     height: 24px;
+    margin-bottom: 4px;
+    margin-top: 15px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -70,10 +85,12 @@
     display: flex;
     align-items: center;
     color: #00122B;
+    white-space: nowrap;
 
 }
 
 input{
+    gap: 0px;
     display: flex;
     box-sizing: border-box;
     width: 374px;
@@ -90,8 +107,10 @@ input::placeholder {
 
 .esqueceu-a-senha{
 
+    display: flex;
     width: 100px;
     height: 15px;
+    margin-top: 4px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -103,6 +122,81 @@ input::placeholder {
     color: #226ED8;
 
 }
+
+#btn-entrar{
+
+    display: flex;
+    width: 374px;
+    height: 45px;
+    margin-top: 32px;
+    background: #226ED8;
+    border-radius: 20px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.text-btn-enviar{
+
+    display: flex;
+    width: 50px;
+    height: 24px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+
+}
+
+.retangulo2-login{
+
+    display: flex;
+    width: 252px;
+    height: 53px;
+    margin-top: 32px;
+    margin-left: 61px;
+    flex-direction: column;
+    align-content: stretch;
+    align-items: center;
+
+}
+
+.linha{
+
+    position: absolute;
+    width: 0px;
+    height: 170px;
+    border: 1px solid #3B5F91;
+    transform: rotate(90deg);
+    display: flex;
+    margin-top: -83px;
+
+
+}
+
+.não-tem-conta{
+
+    width: 252px;
+    height: 21px;
+    margin-top: 32px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    color: #00122B;
+    white-space: nowrap;
+
+}
+
 
 
 
