@@ -65,10 +65,11 @@ const login = () => {
                             <span type = 'button' className='icon-senha' onClick={mostrarSenha}>
                                 {senhaVisivel ? <MdVisibility/> : <MdVisibilityOff/>}
                             </span>
-                            <input type={senhaVisivel ? 'text' : 'password' } className='text-input' name="senha"  placeholder='Senha secreta' onChange={(e)=> setSenha(e.target.value)} value={senha}></input>
+                            <input type={senhaVisivel ? 'text' : 'password' } style={{background: '#FFE6E6', border:'1px solid #820000'}} className='text-input' name="senha"  placeholder='Senha secreta' onChange={(e)=> setSenha(e.target.value)} value={senha}></input>
                         </label> 
                     </div>
                 </form>
+                <div className='senha-incorreta'>Senha incorreta, tente novamente.</div>
                 <div className='esqueceu-a-senha'>Esqueceu a senha ?</div>
                 <Link to="/kanban" className='link-style'>
                     <button className='text-btn-enviar' id='btn-entrar'>Entrar</button>

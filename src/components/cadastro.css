@@ -45,3 +45,21 @@
     margin-left: 48.39px;
 
 }
+
+.senhas-nao-combinam{
+
+    width: 211px;
+    height: 15px;
+    margin-top: 3px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    color: #820000;
+}
+
+
+

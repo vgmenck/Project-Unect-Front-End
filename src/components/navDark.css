@@ -1,0 +1,54 @@
+.titleNav-dark{
+    
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 45px;
+    text-align: center;
+    color: #3867D6;
+
+}
+
+
+.btn-dark-mode{
+
+    display: flex;
+    border: none;
+    margin-top: 11px;
+    width: 50px;
+    height: 24px;
+    background: linear-gradient(269.72deg, #222222 0.23%, #111111 0.24%, #2E2E2E 99.76%);
+    border-radius: 50px;
+    cursor: pointer;
+
+}
+
+#circlue-dark{
+
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    margin-left: 28px;
+    background: #FAFAFA;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.icon-dark{
+
+    width: 16px;
+    height: 16px;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.017em;
+    color: #222222;
+
+}

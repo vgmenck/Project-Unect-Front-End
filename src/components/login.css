@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 .orgainzation-login{
     display: flex;
+    justify-content: space-evenly;
+    margin-top: 35px;
 }
 
 .img-login{
 
     display: flex;
-    width: 542.16px;
-    height: 582.67px;
-    margin-left: 48px;
-    margin-top: 48px;
 
 }
 
@@ -18,8 +18,6 @@
     display: flex;
     width: 0px;
     height: 601px;
-    margin-top: 35px;
-    margin-left: 49.84px;
     border: 2px solid rgba(156, 199, 251, 0.7);
     transform: rotate(0.06deg);
 
@@ -29,8 +27,7 @@
 
     width: 374px;
     height: 343px;
-    margin-top: 64px;
-    margin-left: 139.39px;
+   
 
 }
 
@@ -63,11 +60,15 @@
     position: absolute;
     transform: translateY(-50%);
     color:  #395B8A;
-    width: 24px;
-    height: 24px;
+    font-size: 24px;
     left: 334px;
     top: 75%;
-    
+    background: none;
+    background: none;
+    border: none;
+    padding: 0; 
+    cursor: pointer; 
+    z-index: 1;
 
 }
 
@@ -98,11 +99,7 @@ input{
     background: #EEF5FF;
     border: 1px solid #002D6C;
     border-radius: 8px;
-
-}
-
-input::placeholder {
-    padding-left: 8px;
+    
 }
 
 .esqueceu-a-senha{
@@ -150,6 +147,7 @@ input::placeholder {
     display: flex;
     align-items: center;
     color: #FFFFFF;
+    cursor: pointer;
 
 }
 
@@ -197,7 +195,74 @@ input::placeholder {
 
 }
 
+.text-input{
 
+    padding-left: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    color: #00122A;
+
+}
+
+.link-style{
+    text-decoration: none;
+}
+
+.input-field{
+    position: relative;
+}
+
+.senha-incorreta{
+
+    width: 174px;
+    height: 15px;
+    margin-top: 4px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    color: #820000;
+
+}
+
+
+@media (max-width: 1500px) {
+
+    .orgainzation-login{
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 35px;
+    }
+
+    .img-login{
+
+        margin-left: 48px;
+        margin-top: 13px;
+        width: 542.16px;
+        height: 582.67px;
+
+    }
+
+    .divisor{
+        margin-left: 49.84px;
+    }
+
+    .forms-entrada{
+        margin-top: 29px;
+        margin-left: 139.39px;
+    }
+
+
+
+}
 
 
 

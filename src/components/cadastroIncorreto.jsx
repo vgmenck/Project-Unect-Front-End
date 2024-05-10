@@ -100,7 +100,7 @@ const cadastro = () => {
                             <span type = 'button' className='icon-senha' onClick={mostrarSenha}>
                                 {senhaVisivel ? <MdVisibility/> : <MdVisibilityOff/>}
                             </span>
-                            <input type={senhaVisivel ? 'text' : 'password' } className='text-input' name="senha"  placeholder='Senha secreta' onChange={(e)=> setSenha(e.target.value)} value={senha || ""} ></input>
+                            <input type={senhaVisivel ? 'text' : 'password' } style={{background: '#FFE6E6', border:'1px solid #820000'}} className='text-input' name="senha"  placeholder='Senha secreta' onChange={(e)=> setSenha(e.target.value)} value={senha || ""} ></input>
                         </label>
                     </div>
                     <div>
@@ -109,10 +109,11 @@ const cadastro = () => {
                             <span type = 'button' className='icon-senha' onClick={mostrarSenha}>
                                 {senhaVisivel ? <MdVisibility/> : <MdVisibilityOff/>}
                             </span>
-                            <input type={senhaVisivel ? 'text' : 'password' } className='text-input' name="confirmeSenha"  placeholder='Senha secreta' onChange={(e)=> setConfirmeSenha(e.target.value)} value={confirmeSenha || ""} ></input>
+                            <input type={senhaVisivel ? 'text' : 'password' } style={{background: '#FFE6E6', border:'1px solid #820000'}} className='text-input' name="confirmeSenha"  placeholder='Senha secreta' onChange={(e)=> setConfirmeSenha(e.target.value)} value={confirmeSenha || ""} ></input>
                         </label>
                     </div>
-                    <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '32px'}} onClick={() => setOpenModal2(true)}>Criar Cadastro</button>  
+                    <div className='senhas-nao-combinam'>Senhas não combinam, tente novamente.</div>
+                    <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '14px'}} onClick={() => setOpenModal2(true)}>Criar Cadastro</button>  
                     <Modal2 isOpen={openModal2} setModalOpen2={() => setOpenModal2(!openModal2)}>
                         Conteúdo do modal
                     </Modal2>

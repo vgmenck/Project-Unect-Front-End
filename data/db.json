@@ -1,0 +1,25 @@
+{
+  "Cadastro": [
+    {
+      "Nome": "Vitor",
+      "Email": "menckvitor@gmail.com",
+      "Senha": "Coxinha123"
+    },
+    {
+      "Nome": "Mestre",
+      "Email": "dudugloria@gmail.com",
+      "Senha": "Coxinha456"
+    },
+    {
+      "Nome": "Lucas",
+      "Email": "lpelegrina@gmail.com",
+      "Senha": "Coxinha789"
+    },
+    {
+      "id": "d5f1",
+      "nome": "Julia Beiroco",
+      "email": "jubs@gmail.com",
+      "senha": "Coxinha1011"
+    }
+  ]
+}

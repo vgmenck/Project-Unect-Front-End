@@ -1,0 +1,106 @@
+.kanbanDarkMode{
+    background-color: #222222;
+    width: 100%;
+    height: 100%;
+}
+
+.retangulo-frase-do-dia-dark{
+
+    width: 620px;
+    height: 119px;
+    margin-left: 160px;
+    margin-top: 32px;
+    border-radius: 20px;
+    background:#3D3D3D;
+    display: flex;
+    flex-wrap: wrap;
+    
+  
+}
+
+.fundo-amarelo-claro-dark{
+    display: flex;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-left: 16px;
+    margin-top: 16px;
+    background:#515151
+
+}
+
+.fundo-cinza-dark{
+    display: flex;
+    overflow: auto;
+    width: 293px;
+    height: 337px;
+    background: #333333;
+    border-radius: 10px;
+}
+
+.desc-tasks-dark{
+
+    width: 80px;
+    height: 18px;
+    margin-left: 12px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: #FAFAFA;
+
+}
+
+.expanding-more-dark{
+
+    width: 12px;
+    height: 12px;
+    margin-top: 3px;
+    margin-left: 2px;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.017em;
+    color: #FAFAFA;
+    right: auto;
+    border: none;
+    background: none;
+    cursor: pointer;
+    
+}
+
+.btn-next-dark{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background: #3867D6;
+    border-radius: 20px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.btn-before-dark{
+
+    width: 20px;
+    height: 20px;
+    display: flex;
+    box-sizing: border-box;
+    background:none;
+    border: 1px solid #226ED8;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+

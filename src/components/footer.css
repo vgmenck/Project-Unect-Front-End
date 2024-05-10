@@ -1,19 +1,24 @@
+
 .alinharfooter{
     display: flex;
-    justify-content: space-between;
-    width: 718px;
+    align-items: center;
+    width: 961px; 
     height: 21px;
+    
 
 }
 
+.alinhar-box{
+
+    margin-left: 545px;
+    
+}
 
 .box-trainee{
 
     display: flex;
     width: 222px;
     height: 21px;
-    margin-left: 160px;
-    margin-top: 14px;
 
 }
 
@@ -42,10 +47,6 @@
     display: flex;
     width: 194px;
     height: 21px;
-    margin-left: 545px;
-    margin-top: 14px;
-
-
 }
 
 #text-feito-com-amor{
@@ -53,8 +54,6 @@
     display: flex;
     width: 69px;
     height: 21px;
-    left: 927px;
-    top: 684px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -74,6 +73,7 @@
 
 .favorite{
 
+    display: flex;
     width: 16px;
     height: 16px;
     margin-left: 5px;
@@ -90,3 +90,4 @@
     color: #FFAFAF;
 
 }
+
