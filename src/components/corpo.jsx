@@ -14,8 +14,6 @@ import Modal from './modalNewTask';
 import { useState } from 'react';
 
 
-
-
 const corpo = () => {
 
     const [openModal, setOpenModal] = useState(false);
@@ -24,6 +22,65 @@ const corpo = () => {
     const [showLess, setShowLess] = useState(false);
     const [showDescription, setShowDescription] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [tasks, setTasks] = useState([
+        { id: 1, description: 'Pagar conta de luz', status: 'A fazer'},
+        { id: 2, description: 'Fazer manicure', status: 'A fazer' },
+        { id: 3, description: 'Fazer compras no mercado', status: 'A fazer' },
+        {id: 4, description: 'Fazer manicure', status: 'A fazer'},
+    ]);
+  
+    const handleMoveTask = (taskId, newStatus) => {
+        setTasks((prevTasks) =>
+            prevTasks.map((task) => {
+                if (task.id === taskId) {
+                    return { ...task, status: newStatus };
+                }
+                return task;
+            }),
+        );
+    };  
+    
+    const handleDeleteTask = (taskId) => {
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    };
+
+    const Task = ({ task, onMoveTask, onDeleteTask }) => {
+        return (
+            <div style={styleBoxTask}>
+            <div className='posicionamento'>
+                <h1 className='text-tasks'>{task.description}</h1>
+                    <div className='rectangle-component'>
+                        <div className={`more-vert-menu ${showMenu ? 'open' : ''}`}>
+                            <button className='more-vert' onClick={handleClickBotao}><MdMoreVert/></button>
+                            {botaoInvisivel && <button className='delete-rectangle' onClick={() => onDeleteTask(task.id)}>
+                                                    <div id='icon-delete'><MdDeleteOutline/></div>
+                                                    <div id='text-delete'>Excluir</div>
+                                                </button>}
+                        </div>
+                    </div>
+            </div>
+            <div className='organization'>
+                <h2 className='desc-tasks' style={textLerDescricao}>Ler descrição</h2>
+                <div className={`expand-more-menu ${showDescription ? 'open' : ''}`}>
+                                <button style={styleExpandindMore} className='expanding-more' onClick={handleDescription} ><MdExpandMore/></button>
+                                {showDescription && <div style={descricaoCompleta}>
+                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
+                                    <div className='expanding-less'onClick={handleDescription}><MdExpandLess/></div>
+                                    <h3 className='descrição'>Comprar batata, cenoura,<br /> feijão, alho, arroz e pipoca.</h3></div>}
+                            </div>
+                {task.status === 'A fazer' && (
+                    <button className='btn-next' style={navigateNext} onClick={() => onMoveTask(task.id, 'Em andamento')}><div className='navegate-next' ><MdNavigateNext/></div></button>
+                )}
+                {task.status === 'Em andamento' && (
+                    <button className='btn-before' style={navigateBefore}><div className='navegate-before'><MdNavigateBefore/></div></button>   
+                )}
+                {task.status === 'Em andamento' && (
+                    <button className='btn-next' style={navigateNext2}><div className='navegate-next' ><MdNavigateNext/></div></button>
+                )}
+            </div>
+        </div>
+        );
+    };
 
     const styleBoxTask = {
         width: isExpanded  ? '253px' : '253px',
@@ -74,7 +131,6 @@ const corpo = () => {
 
     };
 
-
   return (
     <>
         <nav><Nav/></nav>
@@ -101,106 +157,14 @@ const corpo = () => {
                 </div>
                 <div className='fundo-cinza'>
                     <div className='frame'>
-                        <div style={styleBoxTask}>
-                            <div className='posicionamento'>
-                                <h1 className='text-tasks'>Pagar conta de luz</h1>
-                                    <div className='rectangle-component'>
-                                        <div className={`more-vert-menu ${showMenu ? 'open' : ''}`}>
-                                            <button className='more-vert' onClick={handleClickBotao}><MdMoreVert/></button>
-                                            {botaoInvisivel && <button className='delete-rectangle'>
-                                                                    <div id='icon-delete'><MdDeleteOutline/></div>
-                                                                    <div id='text-delete'>Excluir</div>
-                                                                </button>}
-                                        </div>
-                                    </div>
-                            </div>
-                            <div className='organization'>
-                                <h2 className='desc-tasks' style={textLerDescricao}>Ler descrição</h2>
-                                <div className={`expand-more-menu ${showDescription ? 'open' : ''}`}>
-                                                <button style={styleExpandindMore} className='expanding-more' onClick={handleDescription} ><MdExpandMore/></button>
-                                                {showDescription && <div style={descricaoCompleta}>
-                                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                                    <div className='expanding-less'onClick={handleDescription}><MdExpandLess/></div>
-                                                    <h3 className='descrição'>Comprar batata, cenoura,<br /> feijão, alho, arroz e pipoca.</h3></div>}
-                                            </div>
-                                <button className='btn-next' style={navigateNext}><div className='navegate-next' ><MdNavigateNext/></div></button>
-                            </div>
-                        </div>
-                        <div style={styleBoxTask}>
-                        <div className='posicionamento'>
-                            <h1 className='text-tasks'>Fazer compras no mercado</h1>
-                                    <div className='rectangle-component'>
-                                        <div className={`more-vert-menu ${showMenu ? 'open' : ''}`}>
-                                            <button className='more-vert' onClick={handleClickBotao}><MdMoreVert/></button>
-                                            {botaoInvisivel && <button className='delete-rectangle'>
-                                                                    <div id='icon-delete'><MdDeleteOutline/></div>
-                                                                    <div id='text-delete'>Excluir</div>
-                                                                </button>}
-                                        </div>
-                                    </div>
-                            </div>
-                            <div className='organization'>
-                                <h2 className='desc-tasks' style={textLerDescricao}>Ler descrição</h2>
-                                <div className={`expand-more-menu ${showDescription ? 'open' : ''}`}>
-                                                <button style={styleExpandindMore} className='expanding-more' onClick={handleDescription} ><MdExpandMore/></button>
-                                                {showDescription && <div style={descricaoCompleta}>
-                                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                                    <div className='expanding-less'onClick={handleDescription}><MdExpandLess/></div>
-                                                    <h3 className='descrição'>Comprar batata, cenoura,<br /> feijão, alho, arroz e pipoca.</h3></div>}
-                                            </div>
-                                <button className='btn-next' style={navigateNext}><div className='navegate-next' ><MdNavigateNext/></div></button>
-                            </div>
-                        </div>
-                        <div style={styleBoxTask}>
-                            <div className='posicionamento'>
-                                <h1 className='text-tasks'>Fazer manicure</h1> 
-                                <div className='rectangle-component'>
-                                    <div className={`more-vert-menu ${showMenu ? 'open' : ''}`}>
-                                        <button className='more-vert' onClick={handleClickBotao}><MdMoreVert/></button>
-                                        {botaoInvisivel && <button className='delete-rectangle'>
-                                                                <div id='icon-delete'><MdDeleteOutline/></div>
-                                                                <div id='text-delete'>Excluir</div>
-                                                            </button>}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='organization'>
-                                <h2 className='desc-tasks' style={textLerDescricao}>Ler descrição</h2>
-                                <div className={`expand-more-menu ${showDescription ? 'open' : ''}`}>
-                                                <button style={styleExpandindMore} className='expanding-more' onClick={handleDescription} ><MdExpandMore/></button>
-                                                {showDescription && <div style={descricaoCompleta}>
-                                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                                    <div className='expanding-less'onClick={handleDescription}><MdExpandLess/></div>
-                                                    <h3 className='descrição'>Comprar batata, cenoura,<br /> feijão, alho, arroz e pipoca.</h3></div>}
-                                            </div>
-                                <button className='btn-next' style={navigateNext}><div className='navegate-next' ><MdNavigateNext/></div></button>
-                            </div> 
-                        </div>
-                        <div style={styleBoxTask}>
-                        <div className='posicionamento'>
-                            <h1 className='text-tasks'>Fazer manicure</h1> 
-                                    <div className='rectangle-component'>
-                                        <div className={`more-vert-menu ${showMenu ? 'open' : ''}`}>
-                                            <button className='more-vert' onClick={handleClickBotao}><MdMoreVert/></button>
-                                            {botaoInvisivel && <button className='delete-rectangle'>
-                                                                    <div id='icon-delete'><MdDeleteOutline/></div>
-                                                                    <div id='text-delete'>Excluir</div>
-                                                                </button>}
-                                        </div>
-                                    </div>
-                            </div>
-                            <div className='organization'>
-                                <h2 className='desc-tasks' style={textLerDescricao}>Ler descrição</h2>
-                                <div className={`expand-more-menu ${showDescription ? 'open' : ''}`}>
-                                                <button style={styleExpandindMore} className='expanding-more' onClick={handleDescription} ><MdExpandMore/></button>
-                                                {showDescription && <div style={descricaoCompleta}>
-                                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                                    <div className='expanding-less'onClick={handleDescription}><MdExpandLess/></div>
-                                                    <h3 className='descrição'>Comprar batata, cenoura,<br /> feijão, alho, arroz e pipoca.</h3></div>}
-                                            </div>
-                                <button className='btn-next' style={navigateNext}><div className='navegate-next'><MdNavigateNext/></div></button>
-                            </div> 
-                        </div>
+                    {tasks.map((task) => (
+                            <Task
+                            key={task.id}
+                            task={task}
+                            onMoveTask={handleMoveTask}
+                            onDeleteTask={handleDeleteTask}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -209,34 +173,10 @@ const corpo = () => {
                 <h1 className='text-aFazer' style={{whiteSpace: 'nowrap'}}>Em andamento</h1>
                 <div className='fundo-cinza'style={{overflow: 'hidden',marginTop: '8px' }}>
                     <div className='frame'>
-                        <div style={styleBoxTask}>
-                        <div className='posicionamento'>
-                                <h1 className='text-tasks'>Fazer manicure</h1> 
-                                        <div className='rectangle-component'>
-                                            <div className={`more-vert-menu ${showMenu ? 'open' : ''}`}>
-                                                <button className='more-vert' onClick={handleClickBotao}><MdMoreVert/></button>
-                                                {botaoInvisivel && <button className='delete-rectangle'>
-                                                                        <div id='icon-delete'><MdDeleteOutline/></div>
-                                                                        <div id='text-delete'>Excluir</div>
-                                                                    </button>}
-                                            </div>
-                                        </div>
-                                </div>
-                                <div className='organization'>
-                                    <h2 className='desc-tasks' style={textLerDescricao}>Ler descrição</h2>
-                                    <div className={`expand-more-menu ${showDescription ? 'open' : ''}`}>
-                                                    <button style={styleExpandindMore} className='expanding-more' onClick={handleDescription} ><MdExpandMore/></button>
-                                                    {showDescription && <div style={descricaoCompleta}>
-                                                        <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                                        <div className='expanding-less'onClick={handleDescription}><MdExpandLess/></div>
-                                                        <h3 className='descrição'>Comprar batata, cenoura,<br /> feijão, alho, arroz e pipoca.</h3></div>}
-                                                </div>
-                                    <button className='btn-before' style={navigateBefore}><div className='navegate-before'><MdNavigateBefore/></div></button>
-                                    <button className='btn-next' style={navigateNext2}><div className='navegate-next' ><MdNavigateNext/></div></button>
-                                </div>   
-                        </div>
+                    {tasks.filter((task) => task.status === 'Em andamento').map((task) => (
+                        <Task key={task.id} task={task} onMoveTask={handleMoveTask} onDeleteTask={handleDeleteTask} />
+                    ))}
                     </div>
-                      
                     
                 </div>
             </div>

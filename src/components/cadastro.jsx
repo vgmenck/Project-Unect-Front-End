@@ -122,7 +122,6 @@ const cadastro = () => {
             <div className='img-cadastro'>
                 <img src={ImgCadastro} alt="cadastro" />
             </div>
-
         </div>
     </>
   )
