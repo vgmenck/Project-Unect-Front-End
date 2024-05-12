@@ -85,10 +85,9 @@
 }
 
 .kanban{
-
     display: flex;
     width: 960px;
-    height: 376px;
+    height: 62.4vh;
     margin-left: 160px;
     margin-top: 32px;
     margin-bottom: 31px;
@@ -461,9 +460,3 @@
     margin-left: 40px;
 
 }
-
-  
-
-
-
-
