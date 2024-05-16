@@ -1,0 +1,97 @@
+.retangulo-frase-do-dia-mobile{
+
+    width: 315px;
+    height: 218px;
+    margin: 32px auto; 
+    border-radius: 20px;
+    background: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+  
+}
+
+.fundo-amarelo-claro-mobile{
+    display: flex;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-top: 20px;
+    background: #FFFCEE;
+
+}
+
+#fundo-amarelo-medio-mobile{
+    position: relative;
+    display: flex;
+    width: 34px;
+    height: 34px;
+    margin-top: 6px;
+    margin-left: 6px;
+    background: #FFF5C0;
+    border-radius: 50%;
+
+}
+
+.icon-tips-mobile{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    margin-top: 6px;
+    margin-left: 6px;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    letter-spacing: -0.017em;
+    color: #FBB910;
+}
+  
+.title-frase-do-dia-mobile{
+
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    margin-top: 34px;
+    margin-left: 10px;
+    width: 73px;
+    height: 18px;
+    white-space: nowrap;
+  
+}
+  
+.text-retangulo-frase-do-dia-mobile{
+    display: flex;
+    width: 275px;
+    height: 126px;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 0px; 
+    margin-bottom: 20px;
+}
+
+.btn-close-modal-mobile{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    margin-left: 120px;
+    margin-top: 28px;
+    border: 2px solid #226ED8;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #FFFFFF;
+}

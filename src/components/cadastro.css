@@ -61,5 +61,45 @@
     color: #820000;
 }
 
+.link-style{
+    text-decoration: none;
+}
 
 
+@media (max-width: 376px){
+
+    .forms-cadastro{
+
+        height: 546px;
+        width: 327.13px;
+        margin-top: 0px;
+        margin-left: 24px;
+    
+    }
+    
+    .box-title-cadastro{
+    
+        margin-left: 50px;
+        margin-top: -28px;
+    
+    }
+    
+    
+    .img-cadastro{
+    
+        display: none;
+    
+    }
+    
+    .senhas-nao-combinam{
+    
+        width: 253px;
+        height: 18px;
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+    
+
+}

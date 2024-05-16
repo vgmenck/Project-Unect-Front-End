@@ -3,48 +3,53 @@ import ImgCadastro from '../assets/ImgCadastro.svg';
 import { useState } from 'react';
 import {MdVisibilityOff,  MdVisibility} from 'react-icons/md';
 import Modal2 from './modalCadastro';
-
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { CounterContext } from '../context/CounterContext';
 
 const url = "http://localhost:3000/Cadastro"
 
 const cadastro = () => {
 
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const [confirmeSenha, setConfirmeSenha] = useState("");
+    const {Nome, setNome} = useContext(CounterContext);
+    const {Email, setEmail} = useContext(CounterContext);
+    const {Senha, setSenha} = useContext(CounterContext);
+    const {confirmeSenha, setConfirmeSenha} = useContext(CounterContext);
     const [senhaVisivel, setSenhaVisivel] = useState(false);
+    const [confirmarSenhaVisivel, setConfirmarSenhaVisivel] = useState(false);
     const [openModal2, setOpenModal2] = useState(false);
-
-
+    const[Cadastro, setCadastro] = useState([]);
     
-
     const mostrarSenha = () => {
         setSenhaVisivel(!senhaVisivel);
     };
 
+    const mostrarConfirmarSenha = () => {
+        setConfirmarSenhaVisivel(!confirmarSenhaVisivel);
+    };
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
+
         
-        if (!nome || !email || !senha || !confirmeSenha) {
+        
+        if (!Nome || !Email || !Senha || !confirmeSenha) {
             console.error("Por favor, preencha todos os campos.");
             return;
         }
 
-        if (senha !== confirmeSenha) {
+        if (Senha !== confirmeSenha) {
             console.error("As senhas não coincidem.");
             return;
         }
         
         const Cadastro = {
-            nome,
-            email,
-            senha
+            Nome,
+            Email,
+            Senha
         }
 
         try{
-            console.log(Cadastro);
 
             const res = await fetch(url,{
                 method: "Post",
@@ -54,19 +59,21 @@ const cadastro = () => {
                 },
                 body:JSON.stringify(Cadastro),
             });
-    
-            setNome("");
-            setEmail("");
-            setSenha("");
-            setConfirmeSenha("");
-    
 
+            if(res.ok){
+                console.log("Usuário cadastrado");
+                const timer = setTimeout(() => {
+                    window.location.href = '/'; 
+                }, 3000);
+                return () => clearTimeout(timer);
+
+            }else {
+                setError("Erro ao cadastrar o usuário.");
+            }
         } catch (error){
-            console.error("Erro ao cadastrar o usuario", error.message);
+            console.error("Erro ao cadastrar o usuario");
         }
         
-
-
         
     };
 
@@ -85,13 +92,13 @@ const cadastro = () => {
                     <div >
                         <label className='campo-forms'>
                             <span className='title-box'  style={{marginTop: '13px'}}>Nome de usuário</span> 
-                            <input type="text" className='text-input' name="nome"  placeholder='Seu nome de usuário' onChange={(e)=> setNome(e.target.value)} value={nome || ""}></input>
+                            <input type="text" className='text-input' name="Nome"  placeholder='Seu nome de usuário' onChange={(e)=> setNome(e.target.value)} value={Nome || ""}></input>
                         </label>
                     </div>
                     <div >
                         <label className='campo-forms'>
                             <span className='title-box'>E-mail</span> 
-                            <input type="text" className='text-input' name="email"  placeholder='Endereço de e-mail' onChange={(e)=> setEmail(e.target.value)} value={email || ""}></input>
+                            <input type="text" className='text-input' name="Email"  placeholder='Endereço de e-mail' onChange={(e)=> setEmail(e.target.value)} value={Email || ""}></input>
                         </label>
                     </div>
                     <div>
@@ -100,19 +107,26 @@ const cadastro = () => {
                             <span type = 'button' className='icon-senha' onClick={mostrarSenha}>
                                 {senhaVisivel ? <MdVisibility/> : <MdVisibilityOff/>}
                             </span>
-                            <input type={senhaVisivel ? 'text' : 'password' } className='text-input' name="senha"  placeholder='Senha secreta' onChange={(e)=> setSenha(e.target.value)} value={senha || ""} ></input>
+                            <input type={senhaVisivel ? 'text' : 'password' } className='text-input' name="Senha"  placeholder='Senha secreta' onChange={(e)=> setSenha(e.target.value)} value={Senha || ""} ></input>
                         </label>
                     </div>
                     <div>
                         <label className='campo-forms'>
                             <span className='title-box'>Confirme a senha</span> 
-                            <span type = 'button' className='icon-senha' onClick={mostrarSenha}>
-                                {senhaVisivel ? <MdVisibility/> : <MdVisibilityOff/>}
+                            <span type = 'button' className='icon-senha' onClick={mostrarConfirmarSenha}>
+                                {confirmarSenhaVisivel ? <MdVisibility/> : <MdVisibilityOff/>}
                             </span>
-                            <input type={senhaVisivel ? 'text' : 'password' } className='text-input' name="confirmeSenha"  placeholder='Senha secreta' onChange={(e)=> setConfirmeSenha(e.target.value)} value={confirmeSenha || ""} ></input>
+                            <input type={confirmarSenhaVisivel ? 'text' : 'password' } className='text-input' name="confirmeSenha"  placeholder='Senha secreta' onChange={(e)=> setConfirmeSenha(e.target.value)} value={confirmeSenha || ""} ></input>
                         </label>
                     </div>
-                    <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '32px'}} onClick={() => setOpenModal2(true)}>Criar Cadastro</button>  
+                    {Senha !== confirmeSenha && (
+                        <Link to='/cadastroIncorreto' className='link-style'>
+                        <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '32px'}}>Criar Cadastro</button>
+                    </Link> 
+                    )}
+                    {Senha === confirmeSenha && (
+                        <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '32px'}} onClick={() => setOpenModal2(true)}>Criar Cadastro</button>  
+                    )}
                     <Modal2 isOpen={openModal2} setModalOpen2={() => setOpenModal2(!openModal2)}>
                         Conteúdo do modal
                     </Modal2>

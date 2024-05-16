@@ -264,6 +264,111 @@ input{
 
 }
 
+@media (max-width: 426px){
+
+    .orgainzation-login{
+        margin-top: 80px;
+    }
+
+    .img-login{
+    
+        display: none;
+    
+    }
+    
+    .divisor{
+         
+        display: none;
+
+    }
+
+    .icon-senha{
+
+        left: 283.54px;
+
+    
+    }
+    
+    .forms-entrada{
+    
+        width: 324px;
+        height: 359px;
+        margin-top: 0px;
+        margin-left: 24px;
+       
+    
+    }
+
+    .title-login-entrada{
+
+        margin-left: 61px;
+        margin-top: 0px;
+    }
+    
+    
+    .title-box{
+    
+        width: 59.15px;
+        height: 24px;
+    
+    }
+    
+    input{
+        width: 327px;
+
+    }
+    
+    .esqueceu-a-senha{
+    
+        width: 120px;
+        height: 18px;
+        margin-top: 14px;
+    
+    }
+    
+    #btn-entrar{
+    
+        width: 327px;
+        margin-top: 35px;
+    
+    }
+    
+    .text-btn-enviar{
+    
+        width: 58.57px;
+
+    }
+    
+    .retangulo2-login{
+
+        width: 252px;
+        height: 47px;
+        margin-top: 26px;
+        margin-left: 38px;
+
+    
+    }
+    
+    
+    .não-tem-conta{
+    
+        width: 252px;
+        height: 21px;
+        margin-top: 26px;
+    
+    }
+
+    .senha-incorreta{
+
+        width: 208px;
+        height: 18px;
+        margin-top: 4px;
+    
+    }
+    
+
+}
+
 
 
 

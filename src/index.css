@@ -30,3 +30,14 @@ footer{
   justify-content: center;
 
 }
+
+@media (max-width: 426px){
+
+  footer{
+    margin-top: 64px;
+    height: 70px;
+  
+  }
+  
+
+}

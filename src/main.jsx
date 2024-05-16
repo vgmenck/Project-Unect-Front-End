@@ -6,20 +6,25 @@ import Corpo from './components/corpo';
 import Login from './components/login';
 import KanbanDark from './components/kanbanDark.jsx';
 import LoginSenhaIncorreta from './components/loginSenhaIncorreta.jsx';
-import CadastroSenhaIncorreta from './components/cadastroIncorreto.jsx'
-
+import CadastroSenhaIncorreta from './components/cadastroIncorreto.jsx';
+import { CounterContextProvider } from './context/CounterContext.jsx';
 import {createBrowserRouter, RouterProvider, Route} from 'react-router-dom';
-import App from './App.jsx';
+import {register} from 'swiper/element/bundle';
+register();
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element: <Login/>,
-  },
-  {
     path:'cadastro',
     element: <Cadastro/>,
+  },
+  {
+    path:'/',
+    element: <Login/>,
   },
   {
     path:'kanban',
@@ -36,19 +41,16 @@ const router = createBrowserRouter([
   {
     path:'cadastroIncorreto',
     element: <CadastroSenhaIncorreta/>,
-  },
-  {
-    path:'/teste',
-    element: <App/>,
   }
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <div style={{height: '100vh'}}>
+  
   <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>,
-  </div>
+    <CounterContextProvider>
+      <RouterProvider router={router}/>
+    </CounterContextProvider>
+  </React.StrictMode>
+  
  
 );

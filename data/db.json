@@ -3,23 +3,166 @@
     {
       "Nome": "Vitor",
       "Email": "menckvitor@gmail.com",
-      "Senha": "Coxinha123"
+      "Senha": "Coxinha123",
+      "id": "f02b"
     },
     {
       "Nome": "Mestre",
       "Email": "dudugloria@gmail.com",
-      "Senha": "Coxinha456"
+      "Senha": "Coxinha456",
+      "id": "4522"
     },
     {
       "Nome": "Lucas",
       "Email": "lpelegrina@gmail.com",
-      "Senha": "Coxinha789"
+      "Senha": "Coxinha789",
+      "id": "ddf3"
     },
     {
       "id": "d5f1",
-      "nome": "Julia Beiroco",
-      "email": "jubs@gmail.com",
-      "senha": "Coxinha1011"
+      "Nome": "Julia Beiroco",
+      "Email": "jubs@gmail.com",
+      "Senha": "Coxinha1011"
+    },
+    {
+      "id": "dd4c",
+      "Nome": "Leonardo Canuto Junior",
+      "Email": "leozao@gmail.com",
+      "Senha": "Coxinha123"
+    },
+    {
+      "id": "9464",
+      "Nome": "Victor tamay",
+      "Email": "tamay@gmail.com",
+      "Senha": "Coxinha123"
+    },
+    {
+      "id": "e00d",
+      "Nome": "Guilherme Renato",
+      "Email": "guirenato@gmail.com",
+      "Senha": "SALGADO123"
+    },
+    {
+      "id": "2c63",
+      "Nome": "Gabriel Greick",
+      "Email": "greick@gmail.com",
+      "Senha": "gordao123"
+    },
+    {
+      "id": "61d3",
+      "Nome": "guilherme oliveira",
+      "Email": "gui@gmail.com",
+      "Senha": "12345"
+    },
+    {
+      "id": "b2ad",
+      "Nome": "guilherme oliveira",
+      "Email": "gui@gmail.com",
+      "Senha": "12345"
+    },
+    {
+      "id": "64b7",
+      "Nome": "guilherme oliveira",
+      "Email": "gui@gmail.com",
+      "Senha": "12345"
+    },
+    {
+      "id": "b848",
+      "Nome": "guilherme oliveira",
+      "Email": "gui@gmail.com",
+      "Senha": "12345"
+    },
+    {
+      "id": "c30f",
+      "Nome": "guilherme oliveira",
+      "Email": "gui@gmail.com",
+      "Senha": "12345"
+    },
+    {
+      "id": "4dfc",
+      "Nome": "guilherme oliveira",
+      "Email": "gui@gmail.com",
+      "Senha": "gui1234"
+    },
+    {
+      "id": "294b",
+      "Nome": "guilherme oliveira",
+      "Email": "gui@gmail.com",
+      "Senha": "12345"
+    },
+    {
+      "id": "48fe",
+      "Nome": "guilherme oliveira",
+      "Email": "greick@gmail.com",
+      "Senha": "123545345"
+    }
+  ],
+  "Tasks": [
+    {
+      "id": "ded6",
+      "Title": "Lavar a louça",
+      "Description": "faltam so pratos",
+      "Status": "A fazer"
+    },
+    {
+      "id": "1",
+      "Title": "Pagar conta de luz",
+      "Description": "",
+      "Status": "Em andamento"
+    },
+    {
+      "id": "2",
+      "Title": "Fazer manicure",
+      "Description": "",
+      "Status": "Feito"
+    },
+    {
+      "id": "3",
+      "Title": "Fazer compras no mercado",
+      "Description": "Comprar batata, cenoura, feijão, alho, arroz e pipoca.",
+      "Status": "Em andamento"
+    },
+    {
+      "id": "4",
+      "Title": "Fazer manicure",
+      "Description": "",
+      "Status": "A fazer"
+    },
+    {
+      "id": "7c14",
+      "Title": "Lavar a louça",
+      "Description": "faltam so pratos",
+      "Status": "A fazer"
+    },
+    {
+      "id": "309e",
+      "Title": "Limpar chinelo ",
+      "Description": "chinelo branco",
+      "Status": "A fazer"
+    },
+    {
+      "id": "b041",
+      "Title": "Aula Cancelada",
+      "Description": "aula da tarde",
+      "Status": "A fazer"
+    },
+    {
+      "id": "caf2",
+      "Title": "avisar o mestre",
+      "Description": "acordar ele 8 horass",
+      "Status": "A fazer"
+    },
+    {
+      "id": "93af",
+      "Title": "terminar projeto 2.0",
+      "Description": "teste de descrição nova",
+      "Status": "A fazer"
+    },
+    {
+      "id": "77eb",
+      "Title": "Limpar chinelo ",
+      "Description": "somente pretos",
+      "Status": "A fazer"
     }
   ]
 }

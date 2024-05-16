@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+.container-glboal{
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box; 
+    
+}
+
 .retangulo-frase-do-dia{
 
     width: 620px;
     height: 119px;
-    margin-left: 160px;
-    margin-top: 32px;
+    margin: 32px auto; 
     border-radius: 20px;
     background: #FFFFFF;
     display: flex;
     flex-wrap: wrap;
-    
   
 }
 
@@ -86,13 +91,15 @@
 
 .kanban{
 
+    margin: 0 auto;
     display: flex;
     width: 960px;
-    height: 376px;
-    margin-left: 160px;
-    margin-top: 32px;
-    margin-bottom: 31px;
+    height: 100%;
 
+}
+
+.navegate-before-mobile{
+    display: none;
 }
 
 .itens-kanban{
@@ -136,6 +143,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background: none;
     
 }
 
@@ -415,6 +423,7 @@
     border-radius: 20px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .navegate-next{
@@ -462,7 +471,214 @@
 
 }
 
-  
+.bolinhas-mobile{
+    display: none;
+}
+
+.bolinhas{
+    display: none;
+}
+
+
+@media (max-width: 2300px) {
+
+    .kanban{
+        height: 640px;
+    }
+
+}
+
+@media (max-width: 1800px) {
+
+    .kanban{
+        height: 534px;
+    }
+
+}
+
+@media (max-width: 1500px) {
+
+    .retangulo-frase-do-dia{
+        margin-left: 160px;
+    }
+
+    .kanban{
+        margin-left: 160px;
+        margin-top: 32px;
+        margin-bottom: 31px;
+        height: 418px;
+    }
+
+
+}
+
+@media (max-width: 2300px) {
+
+    .kanban{
+        height: 640px;
+    }
+
+}
+
+
+@media (max-width: 1500px) {
+
+    .retangulo-frase-do-dia{
+        margin-left: 160px;
+    }
+
+    .kanban{
+        margin-left: 160px;
+        margin-top: 32px;
+        margin-bottom: 31px;
+        height: 418px;
+    }
+
+
+}
+
+@media (max-width: 426px) {
+
+    
+    .retangulo-frase-do-dia{
+    
+        width: 287px;
+        height: 60px;
+        margin-left: 44px;
+        margin-top: 30px;
+        border-radius: 20px;
+        background: #FFD569;
+    }
+    
+    .fundo-amarelo-claro{
+        display: flex;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        margin-left: 22px; 
+        margin-top: 8px;
+        background: #FFFCEE;
+    
+    }
+
+    .title-frase-do-dia{
+    
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        text-align: center;
+        margin-top: 18px;
+        margin-left: 11px;
+        width: 97px;
+        height: 24px;
+        white-space: nowrap;
+        color: #FFFFFF;
+      
+    }
+      
+    .text-retangulo-frase-do-dia{
+        display: none;
+    }
+    
+    .kanban{
+    
+        margin-left: 10px;
+        margin-top: 30px;
+        display: flex;
+        width: 355px;
+        height: 436px;
+    
+    }
+    
+    .navegate-before-mobile{
+
+        width: 30px;
+        height: 30px;
+        margin-top: 210px;
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+        letter-spacing: -0.017em;
+        color: #226ED8;
+
+
+    }
+    
+    .aFazer{
+        display: block;
+        width: 287px;
+        height: 434px;
+    }
+    
+    .text-aFazer{
+        width: 65px;
+        white-space: nowrap;
+    
+    }
+    
+    .fundo-cinza{
+    
+        display: flex;
+        overflow: auto;
+        width: 287px;
+        height: 396px;
+        background: #EEEEEE;
+        border-radius: 10px;
+
+    }
+
+    
+    .frame{
+    
+        width: 253px;
+        height: 362px;
+        margin-left: 14px;
+        margin-top: 14px;
+    
+    }
+    
+    .em-andamento{
+    
+        display: none;
+        width: 293px;
+        height: 375px;
+        margin-left: 40px;
+    
+    }
+    
+    .feito{
+     display: none;
+        width: 960px;
+        height: 376px;
+        margin-left: 40px;
+    
+    }
+
+    .bolinhas-mobile{
+        display: flex;
+        width: 64px;
+        height: 12px;
+        justify-content: space-between;
+        margin-top: 448px;
+        margin-left: -162px;
+    }
+
+    .bolinhas{
+        display: flex;
+        width: 12px;
+        height: 12px;
+        background: #226ED8;
+        border-radius: 10px;
+        
+
+    }
+
+}
+
 
 
 

@@ -8,8 +8,7 @@
 
     width: 620px;
     height: 119px;
-    margin-left: 160px;
-    margin-top: 32px;
+    margin: 32px auto; 
     border-radius: 20px;
     background:#3D3D3D;
     display: flex;
@@ -85,6 +84,7 @@
     border: none;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
 }
 
@@ -99,8 +99,108 @@
     border-radius: 20px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 
+@media (max-width: 1500px) {
 
+    .retangulo-frase-do-dia-dark{
+        margin-left: 160px;
+    }
+
+
+}
+
+@media (max-width: 426px) {
+
+    
+    .retangulo-frase-do-dia-dark{
+    
+        width: 287px;
+        height: 60px;
+        margin-left: 44px;
+        margin-top: 30px;
+        border-radius: 20px;
+    }
+    
+    .fundo-amarelo-claro-dark{
+        display: flex;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        margin-left: 22px; 
+        margin-top: 8px;
+    
+    }
+      
+    .kanban{
+    
+        margin-left: 10px;
+        margin-top: 30px;
+        display: flex;
+        width: 355px;
+        height: 436px;
+    
+    }
+    
+
+    
+    .fundo-cinza-dark{
+    
+        display: flex;
+        overflow: auto;
+        width: 287px;
+        height: 396px;
+        border-radius: 10px;
+
+    }
+
+    
+    .frame{
+    
+        width: 253px;
+        height: 362px;
+        margin-left: 14px;
+        margin-top: 14px;
+    
+    }
+    
+    .em-andamento{
+    
+        display: none;
+        width: 293px;
+        height: 375px;
+        margin-left: 40px;
+    
+    }
+    
+    .feito{
+     display: none;
+        width: 960px;
+        height: 376px;
+        margin-left: 40px;
+    
+    }
+
+    .bolinhas-mobile{
+        display: flex;
+        width: 64px;
+        height: 12px;
+        justify-content: space-between;
+        margin-top: 448px;
+        margin-left: -162px;
+    }
+
+    .bolinhas{
+        display: flex;
+        width: 12px;
+        height: 12px;
+        background: #226ED8;
+        border-radius: 10px;
+        
+
+    }
+
+}
 
