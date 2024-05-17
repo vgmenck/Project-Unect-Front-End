@@ -1,9 +1,11 @@
 ## React + Vite
 
 #Bibliotecas Utilizadas: 
-Google Icons (npm install @material-ui/icons),
-Swiper (npm install swiper),
-JSON server (npm install json-server),
-React Router (npm install json-server react-router-dom),
+
+npm create vite@latest
+npm install @material-ui/icons (Google Icons),
+npm install swiper (Swiper),
+npm install json-server (JSON server),
+npm install json-server react-router-dom( React Router),
 npm run server,
 npm run dev
