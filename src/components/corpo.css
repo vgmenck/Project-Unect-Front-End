@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.container-glboal{
-    width: 100%;
+.container-global{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100vh;
-    box-sizing: border-box; 
     
 }
 
@@ -11,7 +12,7 @@
 
     width: 620px;
     height: 119px;
-    margin: 32px auto; 
+    margin: 0 auto;
     border-radius: 20px;
     background: #FFFFFF;
     display: flex;
@@ -94,7 +95,7 @@
     margin: 0 auto;
     display: flex;
     width: 960px;
-    height: 100%;
+    height: 418px;
 
 }
 
@@ -172,6 +173,21 @@
     height: 337px;
     background: #EEEEEE;
     border-radius: 10px;
+}
+
+.fundo-cinza::-webkit-scrollbar {
+    width: 6px; 
+    height: 270px; 
+}
+     
+.fundo-cinza::-webkit-scrollbar-track {
+    background: #EEEEEE; 
+    border-radius: 20px;
+}
+
+.fundo-cinza::-webkit-scrollbar-thumb {
+    background:  #C4C4C4;
+    border-radius: 20px; 
 }
 
 .frame{
@@ -479,62 +495,17 @@
     display: none;
 }
 
-
-@media (max-width: 2300px) {
-
-    .kanban{
-        height: 640px;
-    }
-
-}
-
-@media (max-width: 1800px) {
-
-    .kanban{
-        height: 534px;
-    }
-
-}
-
 @media (max-width: 1500px) {
 
+    
     .retangulo-frase-do-dia{
         margin-left: 160px;
+
     }
 
     .kanban{
         margin-left: 160px;
-        margin-top: 32px;
-        margin-bottom: 31px;
-        height: 418px;
     }
-
-
-}
-
-@media (max-width: 2300px) {
-
-    .kanban{
-        height: 640px;
-    }
-
-}
-
-
-@media (max-width: 1500px) {
-
-    .retangulo-frase-do-dia{
-        margin-left: 160px;
-    }
-
-    .kanban{
-        margin-left: 160px;
-        margin-top: 32px;
-        margin-bottom: 31px;
-        height: 418px;
-    }
-
-
 }
 
 @media (max-width: 426px) {

@@ -12,6 +12,10 @@ const ModalDark = ({ isOpen, setModalDarkOpen, children }) => {
     const {Title, setTitle} = useContext(CounterContext);
     const {Description, setDescription} = useContext(CounterContext);
     const {Status, setStatus} =  useContext(CounterContext);
+    const[tamanhoTela, setTamanhoTela] = useState({
+        largura: window.innerWidth,
+        altura: window.innerHeight,
+      });
     
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -65,13 +69,14 @@ const ModalDark = ({ isOpen, setModalDarkOpen, children }) => {
                         <div >
                             <label className='campo-forms-modal'>
                                 <span className='title-box-modal' style={{color: '#FAFAFA'}}>Título *</span> 
-                                <input style={{background:'#333333', border: 'none', color: '#FAFAFA'}} type="text" className='text-input-modal' name="tituloTask"  placeholder='Digite o título da tarefa' onChange={(e)=> setTitle(e.target.value)} value={Title || ""}></input>
+                                {tamanhoTela.largura > 426 ?(<input style={{background:'#333333', border: 'none', color: '#FAFAFA'}} type="text" className='text-input-modal' name="tituloTask"  placeholder='Digite o título da tarefa' onChange={(e)=> setTitle(e.target.value)} value={Title || ""}></input>):(<input style={{background:'#333333', border: 'none', color: '#FAFAFA', width:'255px'}} type="text" className='text-input-modal' name="tituloTask"  placeholder='Digite o título da tarefa' onChange={(e)=> setTitle(e.target.value)} value={Title || ""}></input>)}
                             </label>
                         </div>
                         <div>
                             <label className='campo-forms-modal'>
                                 <span className='title-box-modal'style={{marginTop: '20px', color: '#FAFAFA'}}>Descrição</span> 
-                                <input style={{height:'90px', background:'#333333', border: 'none', color: '#FAFAFA'}} type="text" className='text-input-modal' name="descricaoTask"  placeholder='Descrição da tarefa' onChange={(e)=> setDescription(e.target.value)} value={Description || ""} ></input>
+                                {tamanhoTela.largura > 426 ?(<input style={{height:'90px', background:'#333333', border: 'none', color: '#FAFAFA'}} type="text" className='text-input-modal' name="descricaoTask"  placeholder='Descrição da tarefa' onChange={(e)=> setDescription(e.target.value)} value={Description || ""} ></input>):(<input style={{height:'90px', background:'#333333', border: 'none', color: '#FAFAFA', width:'255px'}} type="text" className='text-input-modal' name="descricaoTask"  placeholder='Descrição da tarefa' onChange={(e)=> setDescription(e.target.value)} value={Description || ""} ></input>)}
+                                
                             </label> 
                         </div>
                     </form>

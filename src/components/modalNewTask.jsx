@@ -3,7 +3,7 @@ import './modalNewTask.css';
 import { MdClose} from 'react-icons/md';
 import { useContext } from 'react';
 import { CounterContext } from '../context/CounterContext';
-import useWindowSize from '../components/useWindowSize';
+import { useState } from 'react';
 
 const url = "http://localhost:3000/Tasks"
 
@@ -12,8 +12,11 @@ const Modal = ({ isOpen, setModalOpen }) => {
     const {Title, setTitle} = useContext(CounterContext);
     const {Description, setDescription} = useContext(CounterContext);
     const {Status, setStatus} =  useContext(CounterContext);
-    const windowSize = useWindowSize();
-    
+    const[tamanhoTela, setTamanhoTela] = useState({
+        largura: window.innerWidth,
+        altura: window.innerHeight,
+      });
+      
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -70,13 +73,13 @@ const Modal = ({ isOpen, setModalOpen }) => {
                         <div >
                             <label className='campo-forms-modal'>
                                 <span className='title-box-modal'>Título *</span> 
-                                <input type="text" className='text-input-modal' name="tituloTask"  placeholder='Digite o título da tarefa' onChange={(e)=> setTitle(e.target.value)} value={Title || ""}></input>
+                                {tamanhoTela.largura > 426 ?(<input  type="text" className='text-input-modal' name="tituloTask"  placeholder='Digite o título da tarefa' onChange={(e)=> setTitle(e.target.value)} value={Title || ""}></input>):(<input style={{width:'255px'}} type="text" className='text-input-modal' name="tituloTask"  placeholder='Digite o título da tarefa' onChange={(e)=> setTitle(e.target.value)} value={Title || ""}></input>)}
                             </label>
                         </div>
                         <div>
                             <label className='campo-forms-modal'>
                                 <span className='title-box-modal'style={{marginTop: '20px'}}>Descrição</span> 
-                                <input style={{height:'90px'}} type="text" className='text-input-modal' name="descricaoTask"  placeholder='Descrição da tarefa' onChange={(e)=> setDescription(e.target.value)} value={Description || ""} ></input>
+                                {tamanhoTela.largura > 426 ?(<input style={{height:'90px'}} type="text" className='text-input-modal' name="descricaoTask"  placeholder='Descrição da tarefa' onChange={(e)=> setDescription(e.target.value)} value={Description || ""} ></input>):(<input style={{height:'90px', width:'255px'}} type="text" className='text-input-modal' name="descricaoTask"  placeholder='Descrição da tarefa' onChange={(e)=> setDescription(e.target.value)} value={Description || ""} ></input>)}
                             </label> 
                         </div>
                     </form>
