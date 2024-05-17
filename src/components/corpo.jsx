@@ -16,7 +16,6 @@ import { useContext } from 'react';
 import { CounterContext } from '../context/CounterContext';
 import { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import useWindowSize from '../components/useWindowSize';
 import ModalMobile from './modalMobile';
 
 const url = "http://localhost:3000/Tasks"
@@ -38,8 +37,26 @@ const corpo = () => {
     const [aFazerTask, setAFazerTask] = useState([]);
     const [emAndamentoTask, setEmAndamentoTask] = useState([]);
     const [feitoTask, setFeitoTask] = useState([]);
-    const windowSize = useWindowSize();
-
+    const[tamanhoTela, setTamanhoTela] = useState({
+      largura: window.innerWidth,
+      altura: window.innerHeight,
+    });
+    
+    useEffect(() => {
+      const handleResize = () => {
+        setTamanhoTela({
+          largura: window.innerWidth,
+          altura: window.innerHeight,
+        });
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+    
     useEffect(()=>{
         async function getData(){
             const response = await fetch(url); 
@@ -66,58 +83,104 @@ const corpo = () => {
     },[]);
 
     
-    const handleMoveTaskAfazer = (taskId, newStatus) => {
-        const taskIndex = aFazerTask.findIndex(task => task.id === taskId);
-        if (taskIndex !== -1) {
-            const movedTask = aFazerTask.splice(taskIndex, 1)[0];
-            movedTask.status = newStatus;
-            if (newStatus === 'Em andamento') {
-                setEmAndamentoTask(prevState => [...prevState, movedTask]);
-            }
-            setAFazerTask([...aFazerTask]);
+  const fetchData = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/Tasks');
+        if (!response.ok) {
+            throw new Error('Failed to fetch tasks');
         }
-    };
+        const data = await response.json();
 
-    const handleMoveTaskEmAndamento = (taskId, newStatus) => {
-        const taskIndex = emAndamentoTask.findIndex(tasks => tasks.id === taskId);
-        if (taskIndex !== -1) {
-            const movedTask = emAndamentoTask.splice(taskIndex, 1)[0];
-            movedTask.Status = newStatus;
-            if (newStatus === 'A fazer') {
-                setAFazerTask(prevState => [...prevState, movedTask]);
-            } else if (newStatus === 'Feito') {
-                setFeitoTask(prevState => [...prevState, movedTask]);
-            }
-            setEmAndamentoTask([...emAndamentoTask]);
+
+        const afazerTasks = data.filter(task => task.Status === 'A fazer');
+        const emAndamentoTasks = data.filter(task => task.Status === 'Em andamento');
+        const feitoTasks = data.filter(task => task.Status === 'Feito');
+
+        setAFazerTask(afazerTasks);
+        setEmAndamentoTask(emAndamentoTasks);
+        setFeitoTask(feitoTasks);
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+    }
+  };
+
+
+  const handleMoveTaskAfazer = async (taskId, newStatus, title, description) => {
+    try {
+        const response = await fetch(`http://localhost:3000/Tasks/${taskId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ Status: newStatus, Title: title, Description: description })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to move task');
         }
-    };
 
-    const handleMoveTaskFeito = (taskId, newStatus) => {
-        const taskIndex = feitoTask.findIndex(task => task.id === taskId);
-        if (taskIndex !== -1) {
-            const movedTask = feitoTask.splice(taskIndex, 1)[0];
-            movedTask.status = newStatus;
-            if (newStatus === 'A fazer') {
-                setAFazerTask(prevState => [...prevState, movedTask]);
-            } else if (newStatus === 'Em andamento') {
-                setEmAndamentoTask(prevState => [...prevState, movedTask]);
-            }
-            setFeitoTasksetEmAndamentoTask([...feitoTask]);
+        await fetchData(); 
+    } catch (error) {
+        console.error('Error moving task:', error);
+    }
+  };
+
+  const handleMoveTaskEmAndamento = async (taskId, newStatus, title, description) => {
+    try {
+      const response = await fetch(`http://localhost:3000/Tasks/${taskId}`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ Status: newStatus, Title: title, Description: description })
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to move task');
+      }
+
+      await fetchData(); 
+  } catch (error) {
+      console.error('Error moving task:', error);
+  }
+  };
+
+  const handleMoveTaskFeito = async (taskId, newStatus, title, description) => {
+    try {
+      const response = await fetch(`http://localhost:3000/Tasks/${taskId}`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ Status: newStatus, Title: title, Description: description })
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to move task');
+      }
+
+      await fetchData(); 
+  } catch (error) {
+      console.error('Error moving task:', error);
+  }
+  };
+
+  const handleDeleteTask = async (taskId) => {
+    try {
+        const response = await fetch(`http://localhost:3000/Tasks/${taskId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete task');
         }
-    };
 
-    const handleDeleteTask = (taskId) => {
-        const updatedAFazerTasks = aFazerTask.filter(task => task.id !== taskId);
-        const updatedEmAndamentoTasks = emAndamentoTask.filter(task => task.id !== taskId);
-        const updatedFeitoTasks = feitoTask.filter(task => task.id !== taskId);
-        setAFazerTask(updatedAFazerTasks);
-        setEmAndamentoTask(updatedEmAndamentoTasks);
-        setFeitoTask(updatedFeitoTasks);
-    };
+        await fetchData(); 
+    } catch (error) {
+        console.error('Error deleting task:', error);
+    }
+  };
 
-    
-
-    
     const styleBoxTask = (taskId) => ({
         width: isExpanded[taskId]  ? '253px' : '253px',
         height: isExpanded[taskId] ? '116px' : '74px', 
@@ -175,24 +238,76 @@ const corpo = () => {
         setBotaoInvisivel(showMenu[taskId]);
       };
 
+      const TaskComponent = ({ task, styleBoxTask, showMenu, handleClickBotao, handleDeleteTask, showDescription, handleDescription, textLerDescricao, styleExpandindMore, descricaoCompleta, navigateNext, handleMoveTaskAfazer, handleMoveTaskEmAndamento, handleMoveTaskFeito, navigateBefore, navigateNext2}) => (
+
+        <div key={task.id}>
+          <div style={styleBoxTask(task.id)}>
+            <div className='posicionamento'>
+            {task.Status === 'Feito' ?(
+                <h1 className='text-tasks'style={{textDecorationLine: 'line-through'}}>{task.Title}</h1>
+          ):(
+            <h1 className='text-tasks' >{task.Title}</h1>
+          )}
+              <div className='rectangle-component'>
+                <div className={`more-vert-menu ${showMenu[task.id] ? 'open' : ''}`}>
+                  <button className='more-vert' onClick={() => handleClickBotao(task.id)}><MdMoreVert/></button>
+                  {showMenu[task.id] && <button className='delete-rectangle' onClick={() => handleDeleteTask(task.id)}>
+                    <div id='icon-delete'><MdDeleteOutline/></div>
+                    <div id='text-delete'>Excluir</div>
+                  </button>}
+                </div>
+              </div>
+            </div>
+            <div className='organization'>
+              <h2 className='desc-tasks' style={textLerDescricao (task.id)}>Ler descrição</h2>
+              <div className={`expand-more-menu ${showDescription[task.id] ? "open" : ""}`}>
+                  <button style={styleExpandindMore (task.id)} className='expanding-more' onClick={() => handleDescription(task.id)}><MdExpandMore/></button>
+                    {showDescription[task.id] && <div style={descricaoCompleta (task.id)}>
+                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
+                    <button className='expanding-less' onClick={() => handleDescription(task.id)}><MdExpandLess/></button>
+                    <h3 className='descrição'>{task.Description}</h3></div>}
+                </div>
+             {task.Status === 'A fazer' &&(
+                 <button className='btn-next' style={navigateNext(task.id)} onClick={() => handleMoveTaskAfazer(task.id, 'Em andamento',task.Title, task.Description )}><div className='navegate-next' ><MdNavigateNext/></div></button>
+             )} 
+             {task.Status === 'Em andamento' &&(
+                  <button className='btn-before' style={navigateBefore(task.id)} onClick={() => handleMoveTaskEmAndamento(task.id, 'A fazer',task.Title, task.Description)}><div className='navegate-before'><MdNavigateBefore/></div></button>
+                  
+             )}
+             {task.Status === 'Em andamento' &&(
+              <button className='btn-next' style={navigateNext2(task.id)} onClick={() => handleMoveTaskEmAndamento(task.id, 'Feito',task.Title, task.Description)}><div className='navegate-next' ><MdNavigateNext/></div></button>
+             )}
+              {task.Status === 'Feito' &&(
+              <button className='btn-before' style={navigateBefore(task.id)} onClick={() => handleMoveTaskFeito(task.id, 'Em andamento',task.Title, task.Description)}><div className='navegate-before'><MdNavigateBefore/></div></button>
+             )}
+             {task.Status === 'Feito' &&(
+              <button className='btn-next' style={navigateNext2(task.id)} onClick={() => handleMoveTaskFeito(task.id, 'A fazer',task.Title, task.Description)}><div className='navegate-next' ><MdReplay/></div></button>
+             )}
+            </div>
+          </div>
+        </div>      
+        )
+
+
   return (
     <>
-            <nav><Nav/></nav>
+      <div className='container-global'>
+      <nav><Nav/></nav>
             <ModalMobile isOpen={openModalMobile}  setModalOpenMobile={() => setOpenModalMobile(!openModalMobile)}>
                             Conteúdo do modal
             </ModalMobile>
-            {windowSize.width > 426 ? (
-                <div className="retangulo-frase-do-dia">
-                <div className='fundo-amarelo-claro' >
-                    <div className='icon-tips'id='fundo-amarelo-medio'>
-                        <MdTipsAndUpdates/>
-                    </div>                  
-                 </div>
-                <div className="title-frase-do-dia">Frase do dia</div>
-                <h3 className="text-retangulo-frase-do-dia">Se você quer um pedacinho do paraíso, acredite em Deus. Mas se você<br /> 
-                quer conquistar o mundo, acredite em você porque Deus já te deu tudo o<br />
-                que você precisa para você vencer.</h3>
-                </div>
+            {tamanhoTela.largura < 800 ?(
+              <div className="retangulo-frase-do-dia">
+              <div className='fundo-amarelo-claro' >
+                  <div className='icon-tips'id='fundo-amarelo-medio'>
+                      <MdTipsAndUpdates/>
+                  </div>                  
+               </div>
+              <div className="title-frase-do-dia">Frase do dia</div>
+              <h3 className="text-retangulo-frase-do-dia">Se você quer um pedacinho do paraíso, acredite em Deus. Mas se você<br /> 
+              quer conquistar o mundo, acredite em você porque Deus já te deu tudo o<br />
+              que você precisa para você vencer.</h3>
+              </div>
             ):(
                 <div className="retangulo-frase-do-dia" onClick={() => setOpenModalMobile(true)}>
                 <div className='fundo-amarelo-claro' >
@@ -206,152 +321,108 @@ const corpo = () => {
                 que você precisa para você vencer.</h3>
                 </div>
             )}
+              
+          
+            {tamanhoTela.largura > 1100 ?(
+              <div className="kanban">
+                <div className='aFazer'>
+                  <div className='itens-kanban'>
+                    <h1 className='text-aFazer'>A fazer</h1>
+                    <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenModal(true)}><div id='icon-add'><MdAdd/></div></button>
+                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
+                      Conteúdo do modal
+                    </Modal>
+                  </div>
+                  <div className='fundo-cinza'>
+                    <div className='frame'>
+                      {aFazerTask.map(task => (
+                        <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore}  handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                      ))}
+                  </div>
+                  </div>
+                </div>
+               
+                <div className='em-andamento'>
+                  <h1 className='text-aFazer' style={{whiteSpace: 'nowrap'}}>Em andamento</h1>
+                  <div className='fundo-cinza'style={{marginTop: '8px' }}>
+                    <div className='frame'>
+                      {emAndamentoTask.map((task) => (
+                        <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                      ))}
+                    </div> 
+                  </div>
+              </div>
 
-        <div className="kanban">
-        <span className='navegate-before-mobile'><MdNavigateBefore/></span>
-            {windowSize.width < 426 ?(
-                
-                <Swiper pagination={true}>
-                    <SwiperSlide>  
-                    
-
-                    </SwiperSlide>
-                </Swiper>
-            ) : (
-                <div></div>
-            )}
-            <div className='aFazer'>
-                <div className='itens-kanban'>
-                <h1 className='text-aFazer'>A fazer</h1>
-                <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenModal(true)}><div id='icon-add'><MdAdd/></div></button>
+              <div className='feito'>
+                <h1 className='text-aFazer'>Feito</h1>
+                <div className='fundo-cinza'style={{ marginTop: '8px'}}>
+                  <div className='frame'>
+                    {feitoTask.map((task) => (
+                      <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            ):(
+              <div className="kanban">
+                <span className='navegate-before-mobile'><MdNavigateBefore/></span>
                 <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
-                            Conteúdo do modal
+                                  Conteúdo do modal
                 </Modal>
-            </div>
-            <div className='fundo-cinza'>
-                        <div className='frame'>
-                            {aFazerTask.map(task => (
-                                <div key={task.id}>
-                                    <div style={styleBoxTask(task.id)}>
-                                        <div className='posicionamento'>
-                                            <h1 className='text-tasks'>{task.Title}</h1>
-                                            <div className='rectangle-component'>
-                                                <div className={`more-vert-menu ${showMenu[task.id] ? 'open' : ''}`}>
-                                                    <button className='more-vert' onClick={() => handleClickBotao(task.id)}><MdMoreVert/></button>
-                                                    {showMenu[task.id] && <button className='delete-rectangle' onClick={() => handleDeleteTask(task.id)}>
-                                                    <div id='icon-delete'><MdDeleteOutline/></div>
-                                                    <div id='text-delete'>Excluir</div>
-                                                    </button>}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='organization'>
-                                            <h2 className='desc-tasks' style={textLerDescricao (task.id)}>Ler descrição</h2>
-                                            <div className={`expand-more-menu ${showDescription[task.id] ? "open" : ""}`}>
-                                                <button style={styleExpandindMore (task.id)} className='expanding-more' onClick={() => handleDescription(task.id)}><MdExpandMore/></button>
-                                                {showDescription[task.id] && <div style={descricaoCompleta (task.id)}>
-                                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                                    <button className='expanding-less' onClick={() => handleDescription(task.id)}><MdExpandLess/></button>
-                                                <h3 className='descrição'>{task.Description}</h3></div>}
-                                            </div>
-                                            <button className='btn-next' style={navigateNext(task.id)} onClick={() => handleMoveTaskAfazer(task.id, 'Em andamento')}><div className='navegate-next' ><MdNavigateNext/></div></button>
-                                        </div>
-                                    </div>
-                                </div>   
-                            ))}
-                        </div>
+              <Swiper pagination={true}  style={{width: '816px', height: '434px'}}>
+                <SwiperSlide>  
+                  <div className='aFazer'>
+                    <div className='itens-kanban'>
+                      <h1 className='text-aFazer'>A fazer</h1>
+                      <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenModal(true)}><div id='icon-add'><MdAdd/></div></button>
                     </div>
-            </div>
-            
+                  <div className='fundo-cinza'>
+                    <div className='frame'>
+                      {aFazerTask.map(task => (
+                       <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  /> 
+                      ))}
+                    </div>
+                  </div>
+                  </div>
 
-            <div className='em-andamento'>
-            <h1 className='text-aFazer' style={{whiteSpace: 'nowrap'}}>Em andamento</h1>
-            <div className='fundo-cinza'style={{overflow: 'hidden',marginTop: '8px' }}>
-                <div className='frame'>
-                {emAndamentoTask.map((task) => (
-                        <div key={task.id}>
-                        <div style={styleBoxTask(task.id)}>
-                        <div className='posicionamento'>
-                        <h1 className='text-tasks'>{task.Title}</h1>
-                        <div className='rectangle-component'>
-                        <div className={`more-vert-menu ${showMenu[task.id] ? 'open' : ''}`}>
-                            <button className='more-vert' onClick={() => handleClickBotao(task.id)}><MdMoreVert/></button>
-                                {showMenu[task.id] && <button className='delete-rectangle' onClick={() => handleDeleteTask(task.id)}>
-                                    <div id='icon-delete'><MdDeleteOutline/></div>
-                                    <div id='text-delete'>Excluir</div>
-                            </button>}
-                        </div>
+              </SwiperSlide>
+              
+              <SwiperSlide>
+              <div className='em-andamento'>
+                <h1 className='text-aFazer' style={{whiteSpace: 'nowrap'}}>Em andamento</h1>
+                <div className='fundo-cinza'style={{marginTop: '8px' }}>
+                    <div className='frame'>
+                    {emAndamentoTask.map((task) => (
+                            <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                    ))}
+                    </div>
+                    
+                </div>
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide>
+                  <div className='feito'>
+                  <h1 className='text-aFazer'>Feito</h1>
+                <div className='fundo-cinza'style={{marginTop: '8px'}}>
+                    <div className='frame'>
+                    {feitoTask.map((task) => (
+                           <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                    ))}
                     </div>
                 </div>
-                <div className='organization'>
-                <h2 className='desc-tasks' style={textLerDescricao(task.id)}>Ler descrição</h2>
-                <div className={`expand-more-menu ${showDescription[task.id] ? "open" : ""}`}>
-                                <button style={styleExpandindMore(task.id)} className='expanding-more' onClick={() => handleDescription(task.id)}><MdExpandMore/></button>
-                                {showDescription && <div style={descricaoCompleta(task.id)}>
-                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                    <div className='expanding-less'onClick={() => handleDescription(task.id)}><MdExpandLess/></div>
-                                    <h3 className='descrição'>{task.Description}</h3></div>}
-                            </div>
-                <button className='btn-before' style={navigateBefore(task.id)} onClick={() => handleMoveTaskEmAndamento(task.id, 'A fazer')}><div className='navegate-before'><MdNavigateBefore/></div></button>
-                <button className='btn-next' style={navigateNext2(task.id)} onClick={() => handleMoveTaskEmAndamento(task.id, 'Feito')}><div className='navegate-next' ><MdNavigateNext/></div></button>
-                </div>
-                </div>
-                </div>
-                ))}
-                </div>
-                
-            </div>
-        </div>
-
-      
-        <div className='feito'>
-        <h1 className='text-aFazer'>Feito</h1>
-            <div className='fundo-cinza'style={{overflow: 'hidden', marginTop: '8px'}}>
-                <div className='frame'>
-                {feitoTask.map((task) => (
-                        <div key={task.id}>
-                        <div style={styleBoxTask(task.id)}>
-                        <div className='posicionamento'>
-                        <h1 className='text-tasks' style={{textDecorationLine: 'line-through'}}>{task.Title}</h1>
-                        <div className='rectangle-component'>
-                        <div className={`more-vert-menu ${showDescription[task.id] ? "open" : ""}`}>
-                            <button className='more-vert' onClick={() => handleClickBotao(task.id)}><MdMoreVert/></button>
-                                {showMenu[task.id] && <button className='delete-rectangle' onClick={() => handleDeleteTask(task.id)}>
-                                    <div id='icon-delete'><MdDeleteOutline/></div>
-                                    <div id='text-delete'>Excluir</div>
-                            </button>}
-                        </div>
-                    </div>
-                </div>
-                <div className='organization'>
-                <h2 className='desc-tasks' style={textLerDescricao(task.id)}>Ler descrição</h2>
-                <div className={`expand-more-menu ${showDescription ? 'open' : ''}`}>
-                                <button style={styleExpandindMore(task.id)} className='expanding-more' onClick={() => handleDescription(task.id)} ><MdExpandMore/></button>
-                                {showDescription && <div style={descricaoCompleta(task.id)}>
-                                    <h2 className='desc-tasks' style={{ color:'#002D6C', width: '118px'}}>Esconder descrição</h2>
-                                    <div className='expanding-less'onClick={() => handleDescription(task.id)}><MdExpandLess/></div>
-                                    <h3 className='descrição'>{task.Description}</h3></div>}
-                            </div>
-                            <button className='btn-before' style={navigateBefore(task.id)} onClick={() => handleMoveTaskFeito(task.id, 'Em andamento')}><div className='navegate-before'><MdNavigateBefore/></div></button>
-                            <button className='btn-next' style={navigateNext2(task.id)} onClick={() => handleMoveTaskFeito(task.id, 'A fazer')}><div className='navegate-next' ><MdReplay/></div></button>
-                </div>
-                </div>
-                </div>
-                ))}
-                </div>
-            </div>
-        </div>
-            <div className='bolinhas-mobile'>
-                <div className='bolinhas'></div>
-                <div className='bolinhas' style={{backgroundColor:' #515151'}}></div>
-                <div className='bolinhas' style={{backgroundColor:' #515151'}}></div>
-            </div>
-            <span className='navegate-before-mobile' style={{marginLeft: '116px'}}><MdNavigateNext/></span>
-            </div>
-
+              </div>
+              </SwiperSlide>
+          </Swiper>
+          <span className='navegate-before-mobile'><MdNavigateNext/></span>
+          </div>
+            )}
             <footer>
                 <Footer/>
             </footer>
+      </div>
+            
     </>
   )
 }

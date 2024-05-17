@@ -95,74 +95,44 @@
       "Nome": "guilherme oliveira",
       "Email": "greick@gmail.com",
       "Senha": "123545345"
+    },
+    {
+      "id": "c3b5",
+      "Nome": "tito vila nova",
+      "Email": "tito@gmail.com",
+      "Senha": "3421"
+    },
+    {
+      "id": "e584",
+      "Nome": "pep guardiola",
+      "Email": "pep@gmail.com",
+      "Senha": "123"
     }
   ],
   "Tasks": [
     {
-      "id": "ded6",
-      "Title": "Lavar a louça",
-      "Description": "faltam so pratos",
-      "Status": "A fazer"
-    },
-    {
-      "id": "1",
-      "Title": "Pagar conta de luz",
+      "Status": "Feito",
+      "Title": "Pagar Conta de Luz",
       "Description": "",
-      "Status": "Em andamento"
+      "id": "30bd"
     },
     {
-      "id": "2",
-      "Title": "Fazer manicure",
-      "Description": "",
-      "Status": "Feito"
-    },
-    {
-      "id": "3",
-      "Title": "Fazer compras no mercado",
+      "Status": "Em andamento",
+      "Title": "Fazer compras no Mercado",
       "Description": "Comprar batata, cenoura, feijão, alho, arroz e pipoca.",
-      "Status": "Em andamento"
+      "id": "096f"
     },
     {
-      "id": "4",
-      "Title": "Fazer manicure",
+      "Status": "A fazer",
+      "Title": "Fazer Manicure",
       "Description": "",
-      "Status": "A fazer"
+      "id": "9aac"
     },
     {
-      "id": "7c14",
-      "Title": "Lavar a louça",
-      "Description": "faltam so pratos",
-      "Status": "A fazer"
-    },
-    {
-      "id": "309e",
-      "Title": "Limpar chinelo ",
-      "Description": "chinelo branco",
-      "Status": "A fazer"
-    },
-    {
-      "id": "b041",
-      "Title": "Aula Cancelada",
-      "Description": "aula da tarde",
-      "Status": "A fazer"
-    },
-    {
-      "id": "caf2",
-      "Title": "avisar o mestre",
-      "Description": "acordar ele 8 horass",
-      "Status": "A fazer"
-    },
-    {
-      "id": "93af",
-      "Title": "terminar projeto 2.0",
-      "Description": "teste de descrição nova",
-      "Status": "A fazer"
-    },
-    {
-      "id": "77eb",
-      "Title": "Limpar chinelo ",
-      "Description": "somente pretos",
-      "Status": "A fazer"
+      "Status": "A fazer",
+      "Title": "Entregar Projeto Unect",
+      "Description": "ate as 23:59 de sexta feira dia 17",
+      "id": "0032"
     }
   ]
 }
