@@ -243,7 +243,11 @@ const corpo = () => {
         <div key={task.id}>
           <div style={styleBoxTask(task.id)}>
             <div className='posicionamento'>
-              <h1 className='text-tasks'>{task.Title}</h1>
+            {task.Status === 'Feito' ?(
+                <h1 className='text-tasks'style={{textDecorationLine: 'line-through'}}>{task.Title}</h1>
+          ):(
+            <h1 className='text-tasks' >{task.Title}</h1>
+          )}
               <div className='rectangle-component'>
                 <div className={`more-vert-menu ${showMenu[task.id] ? 'open' : ''}`}>
                   <button className='more-vert' onClick={() => handleClickBotao(task.id)}><MdMoreVert/></button>
@@ -292,7 +296,7 @@ const corpo = () => {
             <ModalMobile isOpen={openModalMobile}  setModalOpenMobile={() => setOpenModalMobile(!openModalMobile)}>
                             Conteúdo do modal
             </ModalMobile>
-            {tamanhoTela.largura > 426 ?(
+            {tamanhoTela.largura < 800 ?(
               <div className="retangulo-frase-do-dia">
               <div className='fundo-amarelo-claro' >
                   <div className='icon-tips'id='fundo-amarelo-medio'>
@@ -319,70 +323,67 @@ const corpo = () => {
             )}
               
           
-            {tamanhoTela.largura > 426 ?(
+            {tamanhoTela.largura > 1100 ?(
               <div className="kanban">
-              <div className='aFazer'>
-                 <div className='itens-kanban'>
-                 <h1 className='text-aFazer'>A fazer</h1>
-                 <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenModal(true)}><div id='icon-add'><MdAdd/></div></button>
-                 <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
-                             Conteúdo do modal
-                 </Modal>
-             </div>
-             <div className='fundo-cinza'>
-                         <div className='frame'>
-                            {aFazerTask.map(task => (
-                              <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore}  handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
-                            ))}
-                         </div>
-                     </div>
-               </div>
-               
-               <div className='em-andamento'>
-             <h1 className='text-aFazer' style={{whiteSpace: 'nowrap'}}>Em andamento</h1>
-             <div className='fundo-cinza'style={{marginTop: '8px' }}>
-                 <div className='frame'>
-                 {emAndamentoTask.map((task) => (
-                  <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
-                 ))}
-                 </div>
-                 
-             </div>
-             </div>
-
-             <div className='feito'>
-               <h1 className='text-aFazer'>Feito</h1>
-             <div className='fundo-cinza'style={{ marginTop: '8px'}}>
-                 <div className='frame'>
-                 {feitoTask.map((task) => (
-                  <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
-                 ))}
-                 </div>
-             </div>
-           </div>
-           </div>
-
-              
-            ):(
-                <div className="kanban" >
-              <span className='navegate-before-mobile'><MdNavigateBefore/></span>
-              <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
-                                Conteúdo do modal
-                    </Modal>
-              <Swiper pagination={true}   style={{width: '300px', height: '434px'}}>
-              <SwiperSlide>  
-                  <div className='aFazer'>
-                    <div className='itens-kanban'>
+                <div className='aFazer'>
+                  <div className='itens-kanban'>
                     <h1 className='text-aFazer'>A fazer</h1>
                     <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenModal(true)}><div id='icon-add'><MdAdd/></div></button>
+                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
+                      Conteúdo do modal
+                    </Modal>
+                  </div>
+                  <div className='fundo-cinza'>
+                    <div className='frame'>
+                      {aFazerTask.map(task => (
+                        <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore}  handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                      ))}
+                  </div>
+                  </div>
                 </div>
-                <div className='fundo-cinza'>
-                            <div className='frame'>
-                                {aFazerTask.map(task => (
-                                    <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  /> 
-                                ))}
-                            </div>
-                        </div>
+               
+                <div className='em-andamento'>
+                  <h1 className='text-aFazer' style={{whiteSpace: 'nowrap'}}>Em andamento</h1>
+                  <div className='fundo-cinza'style={{marginTop: '8px' }}>
+                    <div className='frame'>
+                      {emAndamentoTask.map((task) => (
+                        <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                      ))}
+                    </div> 
+                  </div>
+              </div>
+
+              <div className='feito'>
+                <h1 className='text-aFazer'>Feito</h1>
+                <div className='fundo-cinza'style={{ marginTop: '8px'}}>
+                  <div className='frame'>
+                    {feitoTask.map((task) => (
+                      <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            ):(
+              <div className="kanban">
+                <span className='navegate-before-mobile'><MdNavigateBefore/></span>
+                <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
+                                  Conteúdo do modal
+                </Modal>
+              <Swiper pagination={true}  style={{width: '816px', height: '434px'}}>
+                <SwiperSlide>  
+                  <div className='aFazer'>
+                    <div className='itens-kanban'>
+                      <h1 className='text-aFazer'>A fazer</h1>
+                      <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenModal(true)}><div id='icon-add'><MdAdd/></div></button>
+                    </div>
+                  <div className='fundo-cinza'>
+                    <div className='frame'>
+                      {aFazerTask.map(task => (
+                       <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  /> 
+                      ))}
+                    </div>
+                  </div>
                   </div>
 
               </SwiperSlide>
@@ -417,8 +418,6 @@ const corpo = () => {
           <span className='navegate-before-mobile'><MdNavigateNext/></span>
           </div>
             )}
-            
-        
             <footer>
                 <Footer/>
             </footer>

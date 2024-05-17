@@ -119,10 +119,17 @@
         margin-left: 160px;
     }
 
+}
+
+@media (max-width: 1400px) {
+
+    .retangulo-frase-do-dia-dark{
+        margin-left: 20px;
+    }
 
 }
 
-@media (max-width: 426px) {
+@media (max-width: 820px) {
 
     
     .retangulo-frase-do-dia-dark{

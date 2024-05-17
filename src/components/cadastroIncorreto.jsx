@@ -64,6 +64,7 @@ const cadastro = () => {
                     window.location.href = '/'; 
                 }, 3000);
                 return () => clearTimeout(timer);
+
             }else {
                 setError("Erro ao cadastrar o usuário.");
                 indow.location.href = "/cadastroIncorreto";
@@ -118,11 +119,12 @@ const cadastro = () => {
                     </div>
                     <div className='senhas-nao-combinam'>Senhas não combinam, tente novamente.</div>
                     {Senha !== confirmeSenha && (
-                     <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '14px'}} >Criar Cadastro</button>
-
+                        <Link to='/cadastroIncorreto' style={{textDecoration: 'none'}}>
+                             <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '14px'}} >Criar Cadastro</button>
+                        </Link>
                     )}
                     {Senha === confirmeSenha && (
-                        <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '14px'}} onClick={() => setOpenModal2(true)}>Criar Cadastro</button>  
+                        <button className='text-btn-enviar' id='btn-entrar' style={{marginTop: '14px'}} onClick={() => setOpenModal2(true)}>Criar Cadastro</button>   
                     )}
                     <Modal2 isOpen={openModal2} setModalOpen2={() => setOpenModal2(!openModal2)}>
                         Conteúdo do modal

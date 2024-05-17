@@ -16,6 +16,8 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { CounterContext } from '../context/CounterContext';
 import ModalMobileDark from './modalMobileDark';
+import { Swiper } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
 
 const url = "http://localhost:3000/Tasks"
 
@@ -242,7 +244,12 @@ const kanbanDark = () => {
       <div key={task.id}>
         <div style={styleBoxTask(task.id)}>
           <div className='posicionamento'>
+          {task.Status === 'Feito' ?(
+                <h1 className='text-tasks'style={{textDecorationLine: 'line-through', color: '#FAFAFA'}}>{task.Title}</h1>
+          ):(
             <h1 className='text-tasks' style={{color: '#FAFAFA'}}>{task.Title}</h1>
+          )}
+
             <div className='rectangle-component'>
               <div className={`more-vert-menu ${showMenu[task.id] ? 'open' : ''}`}>
                   <button className='more-vert' style={{color: '#FAFAFA'}} onClick={() => handleClickBotao(task.id)}><MdMoreVert/></button>
@@ -292,7 +299,7 @@ const kanbanDark = () => {
         <ModalMobileDark isOpen={openModalMobileDark} setOpenModalMobileDark={() => setOpenModalMobileDark(!openModalMobileDark)}>
                 Conteúdo do modal
         </ModalMobileDark>
-        {tamanhoTela.largura > 426 ?(
+        {tamanhoTela.largura > 800 ?(
                     <div className="retangulo-frase-do-dia-dark">
                     <div className="fundo-amarelo-claro-dark">
                       <div className="icon-tips" id="fundo-amarelo-medio" style={{background:'#3D3D3D', color:'#FFFFFF'}}>
@@ -318,60 +325,104 @@ const kanbanDark = () => {
           </div>
         )}
         
-
-        
-        <div className="kanban">
-        <span className='navegate-before-mobile'><MdNavigateBefore/></span>
-          <div className='aFazer'>
-            <div className='itens-kanban'>
-              <h1 className='text-aFazer' style={{color: '#FAFAFA'}}>A fazer</h1>
-              <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenDarkModal(true)}><div id='icon-add'><MdAdd/></div></button>
-              <ModalDark isOpen={openDarkModal} setModalDarkOpen={() => setOpenDarkModal(!openDarkModal)}>
-                Conteúdo do modal
-              </ModalDark>
-            </div>
-            <div className='fundo-cinza-dark'>
-              <div className='frame'>
-              {aFazerTask.map(task => (
-                <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
-              ))}
-            </div>    
-          </div> 
-        </div>
-
-        <div className='em-andamento'>
-          <h1 className='text-aFazer' style={{whiteSpace: 'nowrap', color: '#FAFAFA'}}>Em andamento</h1>
-          <div className='fundo-cinza-dark'style={{overflow: 'auto',marginTop: '8px' }}>
-            <div className='frame'>
-            {emAndamentoTask.map(task => (
-                <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
-              ))}
-            </div>    
+        {tamanhoTela.largura > 1100 ?(
+          <div className="kanban">
+            <div className='aFazer'>
+              <div className='itens-kanban'>
+                <h1 className='text-aFazer' style={{color: '#FAFAFA'}}>A fazer</h1>
+                <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenDarkModal(true)}><div id='icon-add'><MdAdd/></div></button>
+                <ModalDark isOpen={openDarkModal} setModalDarkOpen={() => setOpenDarkModal(!openDarkModal)}>
+                  Conteúdo do modal
+                </ModalDark>
+              </div>
+              <div className='fundo-cinza-dark'>
+                <div className='frame'>
+                {aFazerTask.map(task => (
+                  <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                ))}
+              </div>    
+            </div> 
           </div>
-        </div>
-
-        <div className='feito'>
-          <h1 className='text-aFazer' style={{color: '#FAFAFA'}}>Feito</h1>
-          <div className='fundo-cinza-dark'style={{overflow: 'auto', marginTop: '8px'}}>
-            <div className='frame'>
-            {feitoTask.map(task => (    
-              <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
-            ))}
+  
+          <div className='em-andamento'>
+            <h1 className='text-aFazer' style={{whiteSpace: 'nowrap', color: '#FAFAFA'}}>Em andamento</h1>
+            <div className='fundo-cinza-dark'style={{overflow: 'auto',marginTop: '8px' }}>
+              <div className='frame'>
+              {emAndamentoTask.map(task => (
+                  <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                ))}
+              </div>    
             </div>
-          </div>       
-        </div>
-        <div className='bolinhas-mobile'>
-                  <div className='bolinhas'></div>
-                  <div className='bolinhas' style={{backgroundColor:'#C4C4C4'}}></div>
-                  <div className='bolinhas' style={{backgroundColor:'#C4C4C4'}}></div>
-        </div>
-        <span className='navegate-before-mobile' style={{marginLeft: '116px'}}><MdNavigateNext/></span>
-        </div>     
+          </div>
+  
+          <div className='feito'>
+            <h1 className='text-aFazer' style={{color: '#FAFAFA'}}>Feito</h1>
+            <div className='fundo-cinza-dark'style={{overflow: 'auto', marginTop: '8px'}}>
+              <div className='frame'>
+              {feitoTask.map(task => (    
+                <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+              ))}
+              </div>
+            </div>       
+          </div>
+          </div>
+        ):(
+          <div className="kanban">
+            <span className='navegate-before-mobile'><MdNavigateBefore/></span>
+            <ModalDark isOpen={openDarkModal} setModalDarkOpen={() => setOpenDarkModal(!openDarkModal)}>
+              Conteúdo do modal
+            </ModalDark>
+          <Swiper pagination={true}  style={{width: '816px', height: '434px'}}>
+            <SwiperSlide>
+            <div className='aFazer'>
+              <div className='itens-kanban'>
+                <h1 className='text-aFazer' style={{color: '#FAFAFA'}}>A fazer</h1>
+                <button className='btn-aFazer' style={{background : 'none'}} onClick={() => setOpenDarkModal(true)}><div id='icon-add'><MdAdd/></div></button>
+              </div>
+              <div className='fundo-cinza-dark'>
+                <div className='frame'>
+                {aFazerTask.map(task => (
+                  <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                ))}
+              </div>    
+            </div> 
+          </div>
+
+            </SwiperSlide>
+
+            <SwiperSlide>
+            <div className='em-andamento'>
+            <h1 className='text-aFazer' style={{whiteSpace: 'nowrap', color: '#FAFAFA'}}>Em andamento</h1>
+            <div className='fundo-cinza-dark'style={{overflow: 'auto',marginTop: '8px' }}>
+              <div className='frame'>
+              {emAndamentoTask.map(task => (
+                  <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+                ))}
+              </div>    
+            </div>
+          </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+            <div className='feito'>
+            <h1 className='text-aFazer' style={{color: '#FAFAFA'}}>Feito</h1>
+            <div className='fundo-cinza-dark'style={{overflow: 'auto', marginTop: '8px'}}>
+              <div className='frame'>
+              {feitoTask.map(task => (    
+                <TaskComponent key={task.id} task={task} styleBoxTask={styleBoxTask} showMenu={showMenu} handleClickBotao={handleClickBotao} handleDeleteTask={handleDeleteTask} textLerDescricao={textLerDescricao} showDescription={showDescription} styleExpandindMore={styleExpandindMore} handleDescription={handleDescription} descricaoCompleta={descricaoCompleta} navigateNext={navigateNext} navigateBefore={navigateBefore} handleMoveTaskAfazer={handleMoveTaskAfazer} handleMoveTaskEmAndamento={handleMoveTaskEmAndamento} handleMoveTaskFeito={handleMoveTaskFeito} navigateNext2={navigateNext2}  />
+              ))}
+              </div>
+            </div>       
+          </div>
+            </SwiperSlide>
+          </Swiper>
+          <span className='navegate-before-mobile'><MdNavigateNext/></span>
+          </div>
+        )}     
       <footer style={{background :' #111111'}}>
         <Footer/>
       </footer>
-      </div>
-      
+    </div>
     </>
   )
 }
